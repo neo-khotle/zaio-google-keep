@@ -1,6 +1,61 @@
-main div{
-    display: flex;
-    flex-direction: column;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    width: 400px; 
+
+main > div{
+display: flex;
+flex-direction: column;
+
+width: 400px;
+}
+
+#display-title{
+color: red;
+}
+
+nav header{
+display: flex;
+align-items: center;
+justify-content: space-between;
+background-color: red;
+}
+
+nav header> :first-child{
+display: flex;
+align-items: center;
+}
+
+.settings-area{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+
+/* .profile-area{
+    display: flex;
+    /* justify-content: space-between; 
+    align-items: center;
+} */
+
+aside{
+display: flex;
+flex-direction: column; 
+/* min-width: 150px; 
+width: 10%; */
+
+}
+
+section#main container{
+display: flex;
+}
+
+main{
+width: 90%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
 }
