@@ -76,17 +76,20 @@
 
     <!-- notes sections -->
     <main>    
-        <!--new note section-->
-        <div class="notes"> 
-            <input type="text" id="title" placeholder="Title">
-            <textarea id="note" placeholder="Take a note..."></textarea>
-            <button onclick="saveNote()">Close</button>
-        </div>
 
-        <section id="notes">
+        <div class="form-container active-form"> 
+            <!--new note section-->
+            <form class="notes" id="note-form"> 
+                <input type="text" id="title" placeholder="Title">
+                <textarea id="note" placeholder="Take a note..."></textarea>
+                <button onclick="saveNote()">Close</button>
+            </form>
             
-        </section>
 
+            <section id="notes">
+                
+            </section>
+        </div>
 
     </main>
 
