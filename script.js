@@ -1,23 +1,24 @@
 //The main function
 function saveNote(event) {
-    //to prevent the default action of the close button refreshing the page
-    if (event) event.preventDefault();
-console.log("1. Close button clicked!");
-    const{title, note} = readInput();
-console.log("2. Inputs read:", { title, note });
-    // Prevent saving empty notes
+    event.preventDefault();
+
+    const { title, note } = readInput();
+
+    // Don't save completely empty notes
     if (!title.trim() && !note.trim()) {
-      resetAndCloseForm();
-      return;
+        resetAndCloseForm();
+        return;
     }
 
-    //saves note on computer
-    saveNoteOnComputer(title, note);
-    const noteElement = createElement(title, note);
-console.log("3. Created HTML element:", noteElement);
+    const id = Date.now();
+
+    // Save note to localStorage
+    saveNoteOnComputer(title, note, id);
+
+    // Create and display note
+    const noteElement = createElement(title, note, id);
     displayNote(noteElement);
 
-    //Reset form inputs and toggle back to inactive form
     resetAndCloseForm();
 }
 
@@ -40,30 +41,31 @@ function readInput(){
 
 function createElement(title, note, id = Date.now()){
 
-    // 1. Create title element (only if title text exists)
+    // Create title element (only if title text exists)
     const titleElement = document.createElement("h3");
     titleElement.textContent = title || ""; 
 
-    // 2. Create note paragraph element (only if note text exists)
+    // Create note paragraph element (only if note text exists)
     const noteElement = document.createElement("p");
     noteElement.textContent = note || "";
     
-    // Create a delete icon/button
+    // Create a delete button
     const deleteBtn = document.createElement("span");
     deleteBtn.className = "delete-btn"; //"material-symbols-outlined delete-btn hover";
     deleteBtn.textContent = "delete";
 
-    // 3. Create the container div
+    // Create the container div
     const containerElement = document.createElement("div");
-    containerElement.className = "note-card";
+    containerElement.className = "note-card"; 
+
     
-    // 3. Attach click event listener to delete this specific card
+    // Attach click event listener to delete this specific card
     deleteBtn.onclick = function(event) {
         event.stopPropagation(); // Prevents triggering other card clicks
         deleteNote(containerElement, id);
     };
 
-    // 4. Append children safely
+    //  Append children safely
     if (title) containerElement.appendChild(titleElement);
     if (note) containerElement.appendChild(noteElement);
     containerElement.appendChild(deleteBtn);
@@ -82,7 +84,7 @@ function displayNote(noteElement){
 
 // Clear inputs and toggle forms back to inactive state
 function resetAndCloseForm() {
-  const form = document.getElementById("note-form");
+  const formElement = document.getElementById("note-form");
   const activeFormContainer = document.querySelector(".active-form");
   const inactiveFormContainer = document.querySelector(".inActive-form");
 
@@ -134,20 +136,10 @@ function loadSavedNotes() {
         displayNote(noteElement);
     }
 }
-
 // Run the loadSavedNotes function automatically when page finishes loading
 window.onload = loadSavedNotes;
 
 
-// // Alternative to automatically display saved notes when the page loads
-// document.addEventListener("DOMContentLoaded", () => {
-//   const existingNotes = JSON.parse(localStorage.getItem("myNotes")) || [];
-  
-//   existingNotes.forEach(savedNote => {
-//     const noteElement = createElement(savedNote.title, savedNote.note);
-//     displayNote(noteElement);
-//   });
-// });
 
 function deleteNote (noteCardElement, noteId) {
   // To remove the HTML element from the page immediately

@@ -83,8 +83,9 @@ aside{
     left: 0;
     top: 64px;
     margin-top: 15px;
-    margin-left: 20px;
-    width: 67px; /*will do in js*/
+    /* margin-left: 20px; */
+    width: 75px; /*will do in js*/
+    height: 100vh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -92,11 +93,13 @@ aside{
     transition: 1s;
 }
 
-.sidebar:hover{
+.sidebar.expanded.sidebar:hover{
+    width: 280px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; /*adjust the values*/
 }
 
 .sidebar .sidebar-items{
+    margin-left: 20px;
     padding: 3px;
     display: flex;
     align-items: center;
@@ -289,4 +292,14 @@ form #note{
 .delete-btn:hover {
     background-color: #f1f3f4;
     color: #d93025; /* Turns red on hover */
+}
+
+/* Note Display Grid Layout */
+.view-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 20px;
 }
