@@ -117,12 +117,13 @@
                             </div>
                         </div>
 
-                        <button class="close-btn" onclick="saveNote()">Close</button>
+                        <button class="close-btn" onclick="saveNote(event)">Close</button>
                     </div>
             </form>
         </div>
-
-        <div class="form-container inActive-form" >
+        <div id="notes"></div>
+        
+            <div class="form-container inActive-form" >
                 <form class="form" id="form">
                     <input type="text" placeholder="Make a note" class="note-title"/>
 
@@ -142,7 +143,7 @@
                 
                 </form>
 
-            </div>
+            </div> 
 
     </main>
 

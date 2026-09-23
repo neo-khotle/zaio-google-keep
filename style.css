@@ -245,3 +245,48 @@ form #note{
     font-size: 1rem;
     margin-top: 7px;
 }
+
+.inActive-form .form-actions{
+    display: flex;
+    width: 40%;
+    background-color: red;
+}
+
+.inActive-form .note-title{
+    border: none;
+    font-size: 1rem;
+    height: 100%;
+    width: 60%;
+    padding: 10px 10px 10px 10px;
+}
+
+.inActive-form .form-actions .material-symbols-outlined{
+    margin: 5px;
+}
+
+.note-card {
+    position: relative;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin: 10px;
+    width: 240px;
+}
+
+.delete-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background-color: transparent;
+    border: none;
+    color: #5f6368;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    background-color: #f1f3f4;
+    color: #d93025; /* Turns red on hover */
+}
