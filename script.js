@@ -39,35 +39,32 @@ function readInput(){
 
 }
 
-function createElement(title, note, id = Date.now()){
+function createElement(title, note, id){
 
-    // Create title element (only if title text exists)
-    const titleElement = document.createElement("h3");
-    titleElement.textContent = title || ""; 
+    const containerElement = document.createElement("div");
+    containerElement.className = "note-card";
 
-    // Create note paragraph element (only if note text exists)
-    const noteElement = document.createElement("p");
-    noteElement.textContent = note || "";
-    
-    // Create a delete button
+    if (title) {
+        const titleElement = document.createElement("h3");
+        titleElement.textContent = title;
+        containerElement.appendChild(titleElement);
+    }
+
+    if (note) {
+        const noteElement = document.createElement("p");
+        noteElement.textContent = note;
+        containerElement.appendChild(noteElement);
+    }
+
     const deleteBtn = document.createElement("span");
-    deleteBtn.className = "delete-btn"; //"material-symbols-outlined delete-btn hover";
+    deleteBtn.className = "material-symbols-outlined delete-btn";
     deleteBtn.textContent = "delete";
 
-    // Create the container div
-    const containerElement = document.createElement("div");
-    containerElement.className = "note-card"; 
-
-    
-    // Attach click event listener to delete this specific card
-    deleteBtn.onclick = function(event) {
-        event.stopPropagation(); // Prevents triggering other card clicks
+    deleteBtn.onclick = function (event) {
+        event.stopPropagation();
         deleteNote(containerElement, id);
     };
 
-    //  Append children safely
-    if (title) containerElement.appendChild(titleElement);
-    if (note) containerElement.appendChild(noteElement);
     containerElement.appendChild(deleteBtn);
 
     return containerElement;
