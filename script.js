@@ -131,9 +131,6 @@ function loadSavedNotes() {
         displayNote(noteElement);
     });
 }
-// Run the loadSavedNotes function automatically when page finishes loading
-window.onload = loadSavedNotes;
-
 
 
 function deleteNote (noteCardElement, noteId) {
@@ -149,10 +146,13 @@ function deleteNoteFromComputer(noteId) {
   const existingNotes = JSON.parse(localStorage.getItem("myNotes")) || [];
 
   // Keep all notes EXCEPT the one with the deleted ID
-  const updatedNotes = existingNotes.filter(note =>
-    note.id !== noteId
-  );
+  const updatedNotes = existingNotes.filter(function (note) {
+        return note.id !== noteId;
+    });
 
   // Save the updated list back to localStorage
   localStorage.setItem("myNotes", JSON.stringify(updatedNotes));
 }
+
+// Run the loadSavedNotes function automatically when page finishes loading
+window.onload = loadSavedNotes;
