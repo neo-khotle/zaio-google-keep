@@ -81,13 +81,13 @@ function displayNote(noteElement){
 
 // Clear inputs and toggle forms back to inactive state
 function resetAndCloseForm() {
-  const formElement = document.getElementById("note-form");
+  const form = document.getElementById("note-form");
   const activeFormContainer = document.querySelector(".active-form");
   const inactiveFormContainer = document.querySelector(".inActive-form");
 
   // Clear form inputs
-  if (formElement) {
-      formElement.reset();
+  if (form) {
+      form.reset();
   }
 
   // Hide active form, show inactive form
@@ -98,7 +98,7 @@ function resetAndCloseForm() {
 }
 
 // Save notes permanently using browser localStorage
-function saveNoteOnComputer(title, note) {
+function saveNoteOnComputer(title, note ,id) {
   // Retrieve existing saved notes array, or create an empty array if none exists
   const existingNotes = JSON.parse(localStorage.getItem("myNotes")) || [];
 
@@ -106,7 +106,7 @@ function saveNoteOnComputer(title, note) {
     const newNote = {
         title: title,
         note: note,
-        id: Date.now()
+        id: id
     };
 
     // Adds new note to list
@@ -119,19 +119,17 @@ function saveNoteOnComputer(title, note) {
 
 // Helper function to load and display saved notes on page startup
 function loadSavedNotes() {
-    const savedData = localStorage.getItem("myNotes");
-    let existingNotes = [];
+    const existingNotes = JSON.parse(localStorage.getItem("myNotes")) || [];
 
-    if (savedData) {
-        existingNotes = JSON.parse(savedData);
-    }
+    existingNotes.forEach(function (savedNote) {
+        const noteElement = createElement(
+            savedNote.title,
+            savedNote.note,
+            savedNote.id
+        );
 
-    // Loop through saved notes array
-    for (let i = 0; i < existingNotes.length; i++) {
-        const savedNote = existingNotes[i];
-        const noteElement = createElement(savedNote.title, savedNote.note, savedNote.id);
         displayNote(noteElement);
-    }
+    });
 }
 // Run the loadSavedNotes function automatically when page finishes loading
 window.onload = loadSavedNotes;
