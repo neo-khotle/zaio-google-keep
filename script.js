@@ -1,3 +1,10 @@
+const menuButton = document.getElementById("menu-btn");
+const sidebar = document.querySelector(".sidebar");
+
+menuButton.addEventListener("click", function(){
+    sidebar.classList.toggle("expanded");
+});
+
 // Show the active form
 function openActiveForm() {
     const activeFormContainer = document.querySelector(".active-form");
