@@ -1,3 +1,43 @@
+// Show the active form
+function openActiveForm() {
+    const activeFormContainer = document.querySelector(".active-form");
+    const inactiveFormContainer = document.querySelector(".inActive-form");
+
+    activeFormContainer.style.display = "block";
+    inactiveFormContainer.style.display = "none";
+}
+
+
+// // Show the inactive form
+// function closeActiveForm() {
+//     const activeFormContainer = document.querySelector(".active-form");
+//     const inactiveFormContainer = document.querySelector(".inActive-form");
+
+//     activeFormContainer.style.display = "none";
+//     inactiveFormContainer.style.display = "block";
+// }
+
+document.addEventListener("click", function (event) {
+
+    const activeFormContainer = document.querySelector(".active-form");
+
+    // Check if active form is currently visible
+    if (activeFormContainer.style.display === "none") {
+
+        // Check if user clicked outside the active form
+        if (!activeFormContainer.contains(event.target)) {
+
+            const { title, note } = readInput();
+
+            // Only close if the form is empty
+            if (!title.trim() && !note.trim()) {
+                resetAndCloseForm();
+            }
+        }
+    }
+});
+
+
 //The main function
 function saveNote(event) {
     event.preventDefault();

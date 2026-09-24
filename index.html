@@ -76,15 +76,37 @@
 
     <!-- notes sections -->
     <main>    
+        
+        <!--inactive form container-->
+        <div class="form-container inActive-form" onclick="openActiveForm()">
+            <form class="form" id="form">
+                <input type="text" placeholder="Make a note" class="note-title"/>
 
+                
+                <div class="form-actions">
+                    <div>
+                        <span class="material-symbols-outlined hover"> check_box </span>
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined hover"> brush</span>
+                    </div>
+                    <div>
+                        <span class="material-symbols-outlined hover"> image </span>
+                    </div>
+                
+                </div>
+            
+            </form>
+
+        </div>
+
+        <!--active form container-->
         <div class="form-container active-form"> 
-            <!--new note section-->
+            
             <form class="notes" id="note-form"> 
                 <input type="text" id="title" placeholder="Title">
                 <textarea id="note" placeholder="Take a note..."></textarea>
                 
-            
-            
 
             <div class="form-actions">
                         <div class="icons">
@@ -121,29 +143,8 @@
                     </div>
             </form>
         </div>
-        <div id="notes"></div>
-        
-            <div class="form-container inActive-form" >
-                <form class="form" id="form">
-                    <input type="text" placeholder="Make a note" class="note-title"/>
-
-                    
-                    <div class="form-actions">
-                        <div>
-                            <span class="material-symbols-outlined hover"> check_box </span>
-                        </div>
-                        <div>
-                            <span class="material-symbols-outlined hover"> brush</span>
-                        </div>
-                        <div>
-                            <span class="material-symbols-outlined hover"> image </span>
-                        </div>
-                    
-                    </div>
-                
-                </form>
-
-            </div> 
+               
+             
         <!-- Active Notes Container -->
         <div id="notes" class="view-section"></div>
 
