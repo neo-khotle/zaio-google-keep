@@ -271,7 +271,7 @@ main {
 .note-card {
     position: relative;
     width: 240px;
-    min-height: 120px;
+    min-height: 140px;
     padding: 16px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -287,6 +287,22 @@ main {
     white-space: pre-wrap;
 }
 
+/* Archive button */
+
+.archive-btn {
+    position: absolute;
+    right: 40px;
+    bottom: 8px;
+    padding: 4px 8px;
+    border-radius: 50%;
+    color: #5f6368;
+    cursor: pointer;
+}
+
+.archive-btn:hover {
+    background-color: #f1f3f4;
+    color: #d93025;
+}
 
 /* Delete button */
 

@@ -86,7 +86,7 @@ function readInput(){
 
 }
 
-function createElement(title, note, id){
+function createElement(title, note, id, archived = false){
 
     const containerElement = document.createElement("div");
     containerElement.className = "note-card";
@@ -103,6 +103,24 @@ function createElement(title, note, id){
         containerElement.appendChild(noteElement);
     }
 
+    // Archive button
+    const archiveBtn = document.createElement("span");
+    archiveBtn.className = "material-symbols-outlined archive-btn";
+
+    if (archived) {
+        archiveBtn.textContent = "unarchive";
+    } else {
+        archiveBtn.textContent = "archive";
+    }
+
+    archiveBtn.onclick = function (event) {
+        event.stopPropagation();
+        archiveNote(id);
+    };
+
+    containerElement.appendChild(archiveBtn);
+
+    // Delete button
     const deleteBtn = document.createElement("span");
     deleteBtn.className = "material-symbols-outlined delete-btn";
     deleteBtn.textContent = "delete";
@@ -153,7 +171,8 @@ function saveNoteOnComputer(title, note ,id) {
     const newNote = {
         title: title,
         note: note,
-        id: id
+        id: id,
+        archived: false
     };
 
     // Adds new note to list
@@ -166,19 +185,66 @@ function saveNoteOnComputer(title, note ,id) {
 
 // Helper function to load and display saved notes on page startup
 function loadSavedNotes() {
+    const listElement = document.getElementById("notes");
+
+    listElement.innerHTML = "";
+    
     const existingNotes = JSON.parse(localStorage.getItem("myNotes")) || [];
 
     existingNotes.forEach(function (savedNote) {
-        const noteElement = createElement(
-            savedNote.title,
-            savedNote.note,
-            savedNote.id
-        );
 
-        displayNote(noteElement);
+        if (!savedNote.archived) {
+            const noteElement = createElement(
+                savedNote.title,
+                savedNote.note,
+                savedNote.id,
+                savedNote.archived
+            );
+
+            displayNote(noteElement);
+        }
     });
 }
 
+function archiveNote(noteId) {
+    const existingNotes =
+        JSON.parse(localStorage.getItem("myNotes")) || [];
+
+    const note = existingNotes.find(function (note) {
+        return note.id === noteId;
+    });
+
+    if (note) {
+        note.archived = !note.archived;
+    }
+
+    localStorage.setItem("myNotes", JSON.stringify(existingNotes));
+
+    loadSavedNotes();
+}
+
+function loadArchivedNotes() {
+    const listElement = document.getElementById("archived-notes");
+
+    listElement.innerHTML = "";
+
+    const existingNotes =
+        JSON.parse(localStorage.getItem("myNotes")) || [];
+
+    existingNotes.forEach(function (savedNote) {
+
+        if (savedNote.archived) {
+            const noteElement = createElement(
+                savedNote.title,
+                savedNote.note,
+                savedNote.id,
+                savedNote.archived
+            );
+
+            listElement.appendChild(noteElement);
+        }
+    });
+}
 
 function deleteNote (noteCardElement, noteId) {
   // To remove the HTML element from the page immediately
