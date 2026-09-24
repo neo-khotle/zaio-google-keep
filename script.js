@@ -1,3 +1,6 @@
+// To keep track of which note is currently working 
+let currentNoteId = null;
+
 const menuButton = document.getElementById("menu-btn");
 const sidebar = document.querySelector(".sidebar");
 
@@ -132,7 +135,30 @@ function createElement(title, note, id, archived = false){
 
     containerElement.appendChild(deleteBtn);
 
+    containerElement.onclick = function () {
+        openNote(id);
+    };
+
     return containerElement;
+}
+
+// Clicking a saved note
+function openNote(noteId) {
+    const existingNotes =
+        JSON.parse(localStorage.getItem("myNotes")) || [];
+
+    const note = existingNotes.find(function (note) {
+        return note.id === noteId;
+    });
+
+    if (note) {
+        currentNoteId = noteId;
+
+        document.getElementById("title").value = note.title;
+        document.getElementById("note").value = note.note;
+
+        openActiveForm();
+    }
 }
 
 function displayNote(noteElement){
@@ -266,6 +292,36 @@ function deleteNoteFromComputer(noteId) {
   // Save the updated list back to localStorage
   localStorage.setItem("myNotes", JSON.stringify(updatedNotes));
 }
+
+const archiveNoteBtn = document.getElementById("archive-note-btn");
+
+archiveNoteBtn.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    if (currentNoteId !== null) {
+        archiveNote(currentNoteId);
+        currentNoteId = null;
+        resetAndCloseForm();
+    }
+});
+
+const archiveSidebar = document.getElementById("archive-sidebar");
+
+archiveSidebar.addEventListener("click", function () {
+    document.getElementById("notes").style.display = "none";
+    document.getElementById("archived-notes").style.display = "grid";
+
+    loadArchivedNotes();
+});
+
+const notesSidebar = document.getElementById("notes-sidebar");
+
+notesSidebar.addEventListener("click", function () {
+    document.getElementById("archived-notes").style.display = "none";
+    document.getElementById("notes").style.display = "grid";
+
+    loadSavedNotes();
+});
 
 // Run the loadSavedNotes function automatically when page finishes loading
 window.onload = loadSavedNotes;

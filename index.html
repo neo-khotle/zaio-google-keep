@@ -50,8 +50,8 @@
 
     <!-- sidebar -->
     <aside>
-        <div class="sidebar"> 
-            <div class="sidebar-items active-item expanded">
+        <div class="sidebar expanded"> 
+            <div class="sidebar-items active-item" id="notes-sidebar">
                 <span class="material-symbols-outlined hover" > Lightbulb </span>
                 <span class="sidebar-text">Notes</span>
             </div>
@@ -63,8 +63,8 @@
                 <span class="material-symbols-outlined hover"> Edit </span>
                 <span class="sidebar-text">Edit Labels</span>
             </div>
-            <div class="sidebar-items">
-                <span class="material-symbols-outlined hover"> Archive </span>
+            <div class="sidebar-items" id="archive-sidebar">
+                <span class="material-symbols-outlined hover" id="archive-note-btn"> Archive </span>
                 <span class="sidebar-text">Archive</span>
             </div>
             <div class="sidebar-items">
@@ -126,7 +126,7 @@
                                 <span class="material-symbols-outlined hover"> image </span>
                             </div>
                             <div>
-                                <span class="material-symbols-outlined hover"> archive </span>
+                                <span class="material-symbols-outlined hover" id="archive-note-btn"> archive </span>
                             </div>
                             <div>
                                 <span class="material-symbols-outlined hover"> more_vert </span>
