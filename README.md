@@ -27,8 +27,8 @@ Git & GitHub — Version control
 The application is designed around three breakpoints:
 
 Device	Screen Width	Layout
-Mobile	≤ 768px	1 note per row
-Tablet	769px–1023px	2 notes per row
+Mobile	≤ 599px	1 note per row
+Tablet	600px–1023px	2 notes per row
 Desktop	≥ 1024px	4 notes per row
 
 The sidebar collapses on smaller screens and can be expanded when needed.
