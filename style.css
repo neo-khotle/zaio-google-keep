@@ -349,10 +349,17 @@ main {
     border-radius: 50%;
 }
 
+@media (min-width: 1024px){
+    #notes,
+    #archived-notes {
+        width: 80%;
+    }
+}
+
 /* ------------
    mobile view 
    -----------*/
-   @media (max-width: 768px) {
+   @media (max-width: 599px) {
 
     /* Navbar */
     nav header {
@@ -447,7 +454,7 @@ main {
    Tablet view 
    ----------- */
 
-@media (min-width: 769px) and (max-width: 1023px) {
+@media (min-width: 600px) and (max-width: 1023px) {
 
     /* Navbar */
     nav header {
@@ -498,7 +505,7 @@ main {
     /* Notes */
     #notes,
     #archived-notes {
-        width: 70%;
+        width: 90%;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
